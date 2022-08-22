@@ -6,7 +6,7 @@ import { UserService } from './user.service';
 
 @Module({
   imports: [
-      //forFeature pomeni, naj to velja samo nad tem modulom, naj ne velja za celo aplikacijo
+      //forFeature pomeni, da naj to velja samo nad tem modulom, naj ne velja za celo aplikacijo
       TypeOrmModule.forFeature([User])
   ],
   controllers: [UserController],
