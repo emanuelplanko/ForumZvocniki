@@ -29,6 +29,7 @@ export class UserController {
     //ko v Postmanu pritisnem Send bo funkcija create preko Bodya prejela neke podatke in celotne te podatke bo poslala funkciji create v user.service
     //user.service je edini, ki je povezan z bazo torej z user.Respositoryem, bo rekel user.Repository.save te podatke in mi bomo v bazi dobili tega userja brez, da napišemo kak insert stavek
     create (@Body() data): Promise<User> {
+        //create spodaj je funkcija
         return this.userService.create(data);
     }
 
