@@ -1,6 +1,9 @@
-import {Body, Controller, Delete, Get, Param, Post, Put} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Param, Post, Put, Req} from '@nestjs/common';
 import {UserService} from "./user.service";
 import {User} from "./user.entity";
+//import Request za profile spodaj
+import {Request} from 'express';
+import {JwtService} from "@nestjs/jwt";
 
 //prefix pri controllerju ti pove na kateri endpoint bo tolkel
 //za celotni kontroler je users prefix
@@ -9,7 +12,8 @@ export class UserController {
     constructor(
         //UserService je podatkovni tip
         //da lahko prideš iz controllerja user v service je bilo treba v konstruktor nastavit, da je spremenljivka userService tako kot vektor-pointer nad userService modul
-        private userService: UserService) {
+        private userService: UserService,
+        private jwtService: JwtService) {
     }
 
     //prva funkcija-all
@@ -60,6 +64,20 @@ export class UserController {
     delete(@Param('id') id:number) : Promise<any> {
         return this.userService.delete(id);
     }
+
+    //da dobimo nazaj podatke o uporabniku
+    @Get('profile')
+    async profile(@Req() request: Request) {
+        const token = request.cookies['jwt'];
+
+        //da dobimo ven podatk euz tega cookija
+        //jwtService potrebujemo, da lahko verifajamo tokene
+        const data = await this.jwtService.verifyAsync(token);
+
+        return this.userService.findOne({id: data.id});
+    }
+
+
 
     //ustvarila se bo nova funkcija, ki bo dobivala podatke preko Posta in na endpoint, ki ga bom pošiljal je user
     //ime funkcije je tudi create-ta funkcija bo dobila Body, ki je poimenovan data
