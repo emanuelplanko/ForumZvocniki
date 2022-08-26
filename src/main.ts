@@ -10,10 +10,11 @@ async function bootstrap() {
   //cookieParser smo importali za cookie-zgoraj in spodaj
   app.use(cookieParser());
   //enableCors-če obstaja cookie ga bo zmeraj poslalo
-  app.enableCors( {
+  app.enableCors({
     origin: 'https://localhost:3000',
     credentials: true
   })
-  await app.listen(3000);
+  //ali vzemi to ali pa 3000
+  await app.listen(process.env.APP_PORT || 3000);
 }
 bootstrap();

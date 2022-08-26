@@ -7,19 +7,24 @@ import { AuthModule } from './auth/auth.module';
 import { CommonModule } from './common/common.module';
 import { PostModule } from './post/post.module';
 import { SubjectModule } from './subject/subject.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    //importali smo ConfigModule.forRoot()
+    //z importanjem ConfigModula sem povedal svoji aplikaciji da lahko sedaj bere iz spremenljivke .env
+    ConfigModule.forRoot(), //ConfigModule.forRoot({isGlobal: true})-pomeni, da lahko tale ConfigModule uporabim tudi v ostalih modulih
     UserModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: 'postgres',
-      database: 'zvocniki22',
+      //ali ali
+      host: process.env.DB_HOST || 'localhost',
+      port: parseInt(process.env.DB_PORT,10),
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
       autoLoadEntities: true,
-      entities: [],
+      entities: [ ],
       synchronize: true,
     }),
     AuthModule,
