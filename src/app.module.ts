@@ -13,7 +13,7 @@ import { AuthModule } from './auth/auth.module';
       host: 'localhost',
       port: 5432,
       username: 'postgres',
-      password: 'tisiteslo',
+      password: 'postgres',
       database: 'zvocniki22',
       autoLoadEntities: true,
       entities: [],
