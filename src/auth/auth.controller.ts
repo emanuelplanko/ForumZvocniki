@@ -1,4 +1,4 @@
-import {BadRequestException, Body, Controller, NotFoundException, Post, Res} from '@nestjs/common';
+import {BadRequestException, Body, Controller, NotFoundException, Post, Res, UseGuards} from '@nestjs/common';
 import {UserService} from "../user/user.service";
 import {RegisterDto} from "./register.dto";
 import * as bcrypt from 'bcrypt';
@@ -8,6 +8,7 @@ import {NotFoundError} from "rxjs";
 import {JwtService} from "@nestjs/jwt";
 //importati smo morali Response iz expressa in ne it nestjs common
 import {Response} from 'express';
+import {AuthGuard} from "./auth.guard";
 
 @Controller('auth')
 export class AuthController {
@@ -65,7 +66,7 @@ export class AuthController {
         return user;
     }
 
-
+    @UseGuards(AuthGuard)
     @Post('logout')
     //dobim cookie, ki se zbriše
     logout(@Res({passthrough:true}) response: Response) {

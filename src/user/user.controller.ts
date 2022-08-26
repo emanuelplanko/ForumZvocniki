@@ -1,12 +1,14 @@
-import {Body, Controller, Delete, Get, Param, Post, Put, Req} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Param, Post, Put, Req, UseGuards} from '@nestjs/common';
 import {UserService} from "./user.service";
 import {User} from "./user.entity";
 //import Request za profile spodaj
 import {Request} from 'express';
 import {JwtService} from "@nestjs/jwt";
+import {AuthGuard} from "../auth/auth.guard";
 
 //prefix pri controllerju ti pove na kateri endpoint bo tolkel
 //za celotni kontroler je users prefix
+@UseGuards(AuthGuard)
 @Controller('users')
 export class UserController {
     constructor(
@@ -23,6 +25,18 @@ export class UserController {
     all() {
         //poiščeš funkcijo all, ki si jo prej naredil v user.service.ts
         return this.userService.all();
+    }
+
+    //da dobimo nazaj podatke o uporabniku
+    @Get('profile')
+    async profile(@Req() request: Request) {
+        const token = request.cookies['jwt'];
+
+        //da dobimo ven podatk euz tega cookija
+        //jwtService potrebujemo, da lahko verifajamo tokene
+        const data = await this.jwtService.verifyAsync(token);
+
+        return this.userService.findOne({id: data.id});
     }
 
     //user.controller naj se odzove na Post klic na endpoint user
@@ -63,18 +77,6 @@ export class UserController {
     //Param sprejme id
     delete(@Param('id') id:number) : Promise<any> {
         return this.userService.delete(id);
-    }
-
-    //da dobimo nazaj podatke o uporabniku
-    @Get('profile')
-    async profile(@Req() request: Request) {
-        const token = request.cookies['jwt'];
-
-        //da dobimo ven podatk euz tega cookija
-        //jwtService potrebujemo, da lahko verifajamo tokene
-        const data = await this.jwtService.verifyAsync(token);
-
-        return this.userService.findOne({id: data.id});
     }
 
 
