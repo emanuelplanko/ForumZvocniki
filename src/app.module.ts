@@ -13,7 +13,7 @@ import { ConfigModule } from '@nestjs/config';
   imports: [
     //importali smo ConfigModule.forRoot()
     //z importanjem ConfigModula sem povedal svoji aplikaciji da lahko sedaj bere iz spremenljivke .env
-    ConfigModule.forRoot(), //ConfigModule.forRoot({isGlobal: true})-pomeni, da lahko tale ConfigModule uporabim tudi v ostalih modulih
+    ConfigModule.forRoot({isGlobal: true}), //ConfigModule.forRoot({isGlobal: true})-pomeni, da lahko tale ConfigModule uporabim tudi v ostalih modulih-prej smo dobili error
     UserModule,
     TypeOrmModule.forRoot({
       type: 'postgres',

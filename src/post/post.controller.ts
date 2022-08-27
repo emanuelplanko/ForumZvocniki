@@ -57,8 +57,9 @@ export class PostController {
     }
 
     @Post('upload')
-    //UseInterceptor-kateri user je to postu
+    //kateri user je to postu
     //treba je priti do jwt, ta pa nato pove, kateri user je kaj postu
+    //UseInterceptors je en vmesnik, preko tega interceptorja poberemo file in ga bomo storali kamorkoli se odločimo
     @UseInterceptors(FileInterceptor('file',{
         storage: diskStorage({
             destination: './uploads',
@@ -67,9 +68,9 @@ export class PostController {
             }
         })
     }))
-   /* uploadFile(@UploadedFile() file: Express.Multer.File) {
+    uploadFile(@UploadedFile() file: Express.Multer.File) {
         console.log(file);
-    } */
+    }
 
     @Get(':id')
     getOne(@Param('id') id:number) {
