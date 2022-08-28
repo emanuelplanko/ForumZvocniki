@@ -5,7 +5,7 @@ import {Repository} from "typeorm";
 
 @Injectable()
 export class UserService {
-    //se bo avtomatsko pognal ko ga obmo rabli
+    //se bo avtomatsko pognal ko ga bomo rabli
     constructor(
         //userRepository je ime spremenljivke oz. ime tega objekta
         //podatkovni tip Repository<User>-od userja

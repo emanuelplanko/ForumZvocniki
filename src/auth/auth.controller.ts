@@ -6,7 +6,7 @@ import * as bcrypt from 'bcrypt';
 import {LoginDto} from "./login.dto";
 import {NotFoundError} from "rxjs";
 import {JwtService} from "@nestjs/jwt";
-//importati smo morali Response iz expressa in ne it nestjs common
+//importati smo morali Response iz expressa in ne iz nestjs common
 import {Response} from 'express';
 import {AuthGuard} from "./auth.guard";
 
@@ -48,7 +48,7 @@ export class AuthController {
         }
 
         //preveri, če je password, ki ga je vpisal uporabnik enak passwordu, ki je v bazi
-        // data password je to kar jaz vpišem(v plain texti), user password pa je zakodiran password v bazi
+        //data password je to kar jaz vpišem(v plain textu), user password pa je zakodiran password v bazi
         if(!await bcrypt.compare(data.password,user.password)) {
             throw new BadRequestException('Napačno geslo');
         }

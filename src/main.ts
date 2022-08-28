@@ -11,7 +11,7 @@ async function bootstrap() {
   app.use(cookieParser());
   //enableCors-če obstaja cookie ga bo zmeraj poslalo
   app.enableCors({
-    origin: 'https://localhost:3000',
+    origin: 'http://localhost:3000',
     credentials: true
   })
   //ali vzemi to ali pa 3000

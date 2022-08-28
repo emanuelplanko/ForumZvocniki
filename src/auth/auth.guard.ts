@@ -8,12 +8,12 @@ export class AuthGuard implements CanActivate {
   constructor(private jwtService: JwtService) {
   }
 
-  //preverja legitinost jwt
+  //preverja legitimost jwt
   canActivate(
       context: ExecutionContext,
   ): any {
 
-    //ta dle je že narejen v user.controller
+    //ta del je že narejen v user.controller
     try {
       //shranil sem si vse kar je browser poslal-sem zajel v ta request
       const request = context.switchToHttp().getRequest();

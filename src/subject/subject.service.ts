@@ -6,28 +6,28 @@ import {Repository} from "typeorm";
 @Injectable()
 export class SubjectService {
     constructor(
-        @InjectRepository(Subject) private readonly subjectRepositiry: Repository<Subject>
+        @InjectRepository(Subject) private readonly subjectRepository: Repository<Subject>
     ) {
     }
 
     getAll(): Promise<Subject[]> {
-        return this.subjectRepositiry.find();
+        return this.subjectRepository.find();
     }
 
     findOne(id:number): Promise<Subject> {
-        return this.subjectRepositiry.findOne({id});
+        return this.subjectRepository.findOne({id});
     }
 
     create(data): Promise<Subject> {
-        return this.subjectRepositiry.save(data);
+        return this.subjectRepository.save(data);
     }
 
     delete(id:number) {
-        this.subjectRepositiry.delete({id});
+        this.subjectRepository.delete({id});
     }
 
     async update(id:number, data): Promise<Subject> {
-        await this.subjectRepositiry.update(id, data);
+        await this.subjectRepository.update(id, data);
         return this.findOne(id);
     }
 }

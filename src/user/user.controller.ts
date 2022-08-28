@@ -32,7 +32,7 @@ export class UserController {
     async profile(@Req() request: Request) {
         const token = request.cookies['jwt'];
 
-        //da dobimo ven podatk euz tega cookija
+        //da dobimo ven podatke iz tega cookija
         //jwtService potrebujemo, da lahko verifajamo tokene
         const data = await this.jwtService.verifyAsync(token);
 

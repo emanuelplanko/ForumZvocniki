@@ -1,7 +1,7 @@
 import {IsEmail, IsNotEmpty} from "class-validator";
 //import iz class validatorja
 export class RegisterDto {
-    //tale dto je samo za registracijo, login bo imel posebi dto
+    //tale dto je samo za registracijo, login bo imel posebej dto
     @IsNotEmpty()
     first_name: string;
 
