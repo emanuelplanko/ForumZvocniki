@@ -8,6 +8,8 @@ import { CommonModule } from './common/common.module';
 import { PostModule } from './post/post.module';
 import { SubjectModule } from './subject/subject.module';
 import { ConfigModule } from '@nestjs/config';
+import { LoudspeakerModule } from './loudspeaker/loudspeaker.module';
+import { KomentarModule } from './komentar/komentar.module';
 
 @Module({
   imports: [
@@ -31,6 +33,8 @@ import { ConfigModule } from '@nestjs/config';
     CommonModule,
     PostModule,
     SubjectModule,
+    LoudspeakerModule,
+    KomentarModule,
   ],
   controllers: [AppController],
   providers: [AppService],
