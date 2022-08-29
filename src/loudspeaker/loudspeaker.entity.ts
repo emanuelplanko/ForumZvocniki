@@ -32,6 +32,9 @@ export class Loudspeaker {
     frequency_range: string;
 
     @Column()
+    power: string;
+
+    @Column()
     sensitivity: string;
 
     @Column()

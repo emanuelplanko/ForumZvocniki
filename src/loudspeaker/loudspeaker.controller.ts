@@ -51,9 +51,9 @@ export class LoudspeakerController {
             description: data.description,
             company: data.company,
             frequency_range: data.frequency_range,
+            power: data.power,
             sensitivity: data.sensitivity,
             refractive_frequency: data.refractive_frequency,
-
             user: {id: user.id}
         });
     }

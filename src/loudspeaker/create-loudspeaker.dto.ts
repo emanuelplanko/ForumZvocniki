@@ -6,17 +6,21 @@ export class CreateLoudspeakerDto {
     @IsString()
     model_name: string;
 
-    @IsOptional()
+    @IsNotEmpty()
     @IsString()
     description: string;
 
-    @IsOptional()
+    @IsNotEmpty()
     @IsString()
     company: string;
 
     @IsOptional()
     @IsString()
     frequency_range: string;
+
+    @IsOptional()
+    @IsString()
+    power: string;
 
     @IsOptional()
     @IsString()

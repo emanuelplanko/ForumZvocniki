@@ -19,6 +19,10 @@ export class UpdateLoudspeakerDto {
 
     @IsOptional()
     @IsString()
+    power: string;
+
+    @IsOptional()
+    @IsString()
     sensitivity?: string;
 
     @IsOptional()
