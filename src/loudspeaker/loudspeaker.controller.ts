@@ -38,7 +38,7 @@ export class LoudspeakerController {
         return this.loudspeakerService.getAll();
     }
 
-    @Post()
+    @Post('objavi')
     async create (
         @Body() data: CreateLoudspeakerDto,
         @Req() request: Request) {
@@ -75,6 +75,19 @@ export class LoudspeakerController {
     getOne(@Param('id') id:number) {
         return this.loudspeakerService.findOne(id);
     }
+
+    /*@Get('podatki')
+    async podatki(@Req() request: Request) {
+        const token = request.cookies['jwt'];
+
+        //da dobimo ven podatke iz tega cookija
+        //jwtService potrebujemo, da lahko verifajamo tokene
+        const data = await this.jwtService.verifyAsync(token);
+
+        return this.loudspeakerService.findThat({id: data.id});
+    }*/
+
+
 
     @Delete(':id')
     async delete (
