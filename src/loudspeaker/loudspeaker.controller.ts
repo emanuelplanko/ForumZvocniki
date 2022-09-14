@@ -12,7 +12,6 @@ import {
     UseGuards,
     UseInterceptors
 } from '@nestjs/common';
-
 import {AuthGuard} from "../auth/auth.guard";
 import {JwtService} from "@nestjs/jwt";
 import {Request} from 'express';
@@ -33,7 +32,7 @@ export class LoudspeakerController {
         private jwtService: JwtService) {
     }
 
-    @Get()
+    @Get('loudspeakers')
     getAll () {
         return this.loudspeakerService.getAll();
     }
@@ -54,7 +53,8 @@ export class LoudspeakerController {
             power: data.power,
             sensitivity: data.sensitivity,
             refractive_frequency: data.refractive_frequency,
-            user: {id: user.id}
+            user: {id: user.id},
+            subject: {id: data.subject_id}
         });
     }
 

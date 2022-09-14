@@ -30,5 +30,8 @@ export class CreateLoudspeakerDto {
     @IsString()
     refractive_frequency: string;
 
+    @IsNotEmpty()
+    subject_id: number;
+
 
 }

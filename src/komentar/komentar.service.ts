@@ -31,4 +31,9 @@ export class KomentarService {
     delete(id:number) {
         return this.komentarRepository.delete({id});
     }
+
+    async getKoments(postId: number): Promise<Komentar[]> {
+        return (await this.komentarRepository.find({where: { loudspeaker_id: postId }}));
+    }
+
 }

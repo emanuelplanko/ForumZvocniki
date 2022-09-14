@@ -16,7 +16,7 @@ import {UpdateKomentarDto} from "./update-komentar.dto";
 import {AuthGuard} from "../auth/auth.guard";
 
 @UseGuards(AuthGuard)
-@Controller('komentar')
+@Controller('komentarji')
 export class KomentarController {
     constructor(
         private komentarService:KomentarService,
@@ -27,7 +27,7 @@ export class KomentarController {
         return this.komentarService.getAll();
     }
 
-    @Post()
+    @Post('komentiraj')
     async create (
         @Body() data: CreateKomentarDto,
         @Req() request: Request) {
@@ -56,7 +56,7 @@ export class KomentarController {
         const user = await this.jwtService.verifyAsync(jwt);
 
         const komentar = await this.getOne(id);
-        //preverim, če je user, ki sem ga dobil preko requesta, lastnik posta od katerega imam id
+        //preverim, če je user, ki sem ga dobil preko requesta, lastnik komentarja od katerega imam id
         if (komentar.user.id != user.id) {
             throw new UnauthorizedException('Nisi lastnik!');
         }
@@ -74,11 +74,14 @@ export class KomentarController {
         const user = await this.jwtService.verifyAsync(jwt);
 
         const komentar = await this.getOne(id);
-        //preverim, če je user, ki sem ga dobil preko requesta, lastnik posta od katerega imam id
+        //preverim, če je user, ki sem ga dobil preko requesta, lastnik komentarja od katerega imam id
         if (komentar.user.id != user.id) {
             throw new UnauthorizedException('Nisi lastnik!');
         }
 
         return this.komentarService.update(id,data);
     }
+
+
+
 }

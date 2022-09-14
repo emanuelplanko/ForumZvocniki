@@ -10,6 +10,7 @@ import {
 import {IsNotEmpty} from "class-validator";
 import {User} from "../user/user.entity";
 import {Komentar} from "../komentar/komentar.entity";
+import {Subject} from "../subject/subject.entity";
 
 
 
@@ -55,5 +56,8 @@ export class Loudspeaker {
         //povezava na loudspeaker.entity.ts
     komentarji: Komentar[];
 
+    @ManyToOne(()=>Subject, (subject) => subject.loudspeakers,{eager:true})
+    @JoinColumn({name: 'subject_id'})
+    subject: Subject;
 
 }
