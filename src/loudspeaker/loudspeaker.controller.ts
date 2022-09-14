@@ -115,7 +115,7 @@ export class LoudspeakerController {
         const jwt = request.cookies['jwt'];
         const user = await this.jwtService.verifyAsync(jwt);
 
-        const post = await this.getOne(id);
+        const post = await this.getOne(+id);
         //preverim, če je lastnik
         if (post.user.id != user.id) {
             throw new UnauthorizedException('Nisi lastnik!');
@@ -123,4 +123,6 @@ export class LoudspeakerController {
 
         return this.loudspeakerService.update(id,data);
     }
+
+
 }

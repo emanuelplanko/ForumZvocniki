@@ -82,6 +82,13 @@ export class KomentarController {
         return this.komentarService.update(id,data);
     }
 
-
+    @Get('loudspeaker/:id/replies')
+    async getKoments (
+        @Param('id') id:number,
+        @Req() request: Request
+    ) {
+        const komentarji = await this.komentarService.getKoments(id);
+        return komentarji;
+    }
 
 }

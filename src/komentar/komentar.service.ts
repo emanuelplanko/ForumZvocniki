@@ -33,7 +33,7 @@ export class KomentarService {
     }
 
     async getKoments(postId: number): Promise<Komentar[]> {
-        return (await this.komentarRepository.find({where: { loudspeaker_id: postId }}));
+        return (await this.komentarRepository.find({where: { loudspeaker: postId }, order: {created_at:"ASC"}}));
     }
 
 }

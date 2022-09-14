@@ -6,8 +6,10 @@ export class CreateKomentarDto {
     komentar: string;
 
     @IsNotEmpty()
-    user_id: number;
-
-    @IsNotEmpty()
     loudspeaker_id: number;
 }
+
+/*
+    @IsNotEmpty()
+    user_id: number;
+*/
