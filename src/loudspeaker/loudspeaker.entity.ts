@@ -53,7 +53,7 @@ export class Loudspeaker {
     user: User;
 
    @OneToMany(()=>Komentar,(komentar)=>komentar.loudspeaker)
-        //povezava na loudspeaker.entity.ts
+        //povezava na komentar.entity.ts
     komentarji: Komentar[];
 
     @ManyToOne(()=>Subject, (subject) => subject.loudspeakers,{eager:true})

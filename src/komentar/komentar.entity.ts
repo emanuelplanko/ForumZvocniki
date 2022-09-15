@@ -31,7 +31,9 @@ export class Komentar {
     @JoinColumn({name: 'user_id'})
     user: User;
 
-    @ManyToOne(()=>Loudspeaker, (loudspeaker) => loudspeaker.komentarji,{eager:true})
+    @ManyToOne(()=>Loudspeaker, (loudspeaker) => loudspeaker.komentarji,{onDelete: "CASCADE"})
     @JoinColumn({name: 'loudspeaker_id'})
     loudspeaker: Loudspeaker;
 }
+
+//onDelete: "CASCADE"
